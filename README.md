@@ -3,7 +3,7 @@
 ## Overview
 This project examines whether retail investor sentiment expressed on Reddit is associated with short-term stock returns. Using posts from major finance-related subreddits, I extract ticker mentions, score sentiment using a lexical NLP model (VADER), aggregate sentiment at the weekly level, and merge it with weekly stock return data.
 
-Rather than attempting to construct a trading strategy, the primary objective is to evaluate the **informational content and limitations** of social-media sentiment in financial contexts.
+Rather than attempting to construct a trading strategy, the primary objective is to evaluate the informational content and limitations of social-media sentiment in financial contexts.
 
 ---
 
@@ -24,7 +24,7 @@ Sentiment is aggregated at the **ticker–week level** and aligned temporally wi
 ## Technical Implementation and Data Engineering
 
 ### Reddit Data Collection
-Posts were collected programmatically using Reddit’s API via the `praw` library. To reduce noise and false attribution, analysis was restricted to a **predefined universe of widely discussed tickers**, including large-cap technology firms, frequently traded equities, and major ETFs.
+Posts were collected programmatically using Reddit’s API via the `praw` library. To reduce noise and false attribution, analysis was restricted to a predefined universe of widely discussed tickers, including large-cap technology firms, frequently traded equities, and major ETFs.
 
 Data were collected in **weekly windows over a 12-week horizon**, enabling construction of a panel suitable for regression analysis.
 
@@ -50,7 +50,7 @@ Each post was scored using **VADER**, a rule-based lexical sentiment model desig
 ---
 
 ### Aggregation and Returns Integration
-Posts mentioning multiple tickers were expanded and aggregated to the **ticker–week level**, computing:
+Posts mentioning multiple tickers were expanded and aggregated to the ticker–week level, computing:
 - Mean sentiment score  
 - Post count per ticker–week  
 
@@ -59,30 +59,8 @@ Weekly stock returns were computed using adjusted closing prices from Yahoo Fina
 ---
 
 ## Quantitative Results (Summary)
-Regression analysis and visualization show that Reddit sentiment has **limited and unstable explanatory power** for short-term stock returns. While isolated positive associations appear in some weeks, the overall relationship is weak and inconsistent across tickers and time.
+Regression analysis and visualization show that Reddit sentiment has limited and unstable explanatory power for short-term stock returns. While isolated positive associations appear in some weeks, the overall relationship is weak and inconsistent across tickers and time.To better understand these results, I also conducted a qualitative analysis of selected posts from r/wallstreetbets and r/investing. Five recurring themes were identified,
 
----
-
-## Qualitative Analysis
-To better understand these results, I conducted a qualitative analysis of selected posts from r/wallstreetbets and r/investing. Five recurring themes were identified, including performance signaling, risk-taking identity, post-hoc justification, emotional coping, and appeals to collective experience.
-
-This analysis highlights how **community norms, humor, and identity signaling** shape sentiment expression in ways that lexical models struggle to interpret accurately.
-
----
-
-## Key Takeaways
-- Social-media sentiment is a noisy and context-dependent signal  
-- Lexical sentiment models systematically misclassify tone in finance communities  
-- Quantitative results must be interpreted alongside qualitative understanding of user behavior  
-
----
-
-## Limitations
-- Short time window limits long-term inference  
-- Results are subreddit- and sector-specific  
-- No claim of tradable predictive power  
-
----
 
 ## Tools
 Python · pandas · praw · nltk (VADER) · yfinance · statsmodels · matplotlib
